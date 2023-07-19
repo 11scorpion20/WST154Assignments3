@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  <style>
+  
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-image: url('/Image/Desert.jpg');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .door {
+      width: 200px;
+      height: 400px;
+      background-color: #4d2306;
+      border-style: groove;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .door::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background-color: #F5F5F5;
+      transition: transform 1s, background-color 0.5s;
+    }
+
+    .open-door::before {
+      transform: translateX(100%);
+    }
+    .picture {
+      position: absolute;
+      top: 0;
+      left: 0%;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0; /* Initially hidden */
+      transition: opacity 0.3s;
+    }
+    .open-door .picture {
+      opacity: 1; /* Show when door is open */
+    }
+
+    .button-container {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .my-button {
+      background-color: #4CAF50;
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="door">
+    <img class="picture" src="/Image/people.jpg" alt="Picture">
+  </div>
+  
+
+  <div class="button-container">
+    <input type="password" id="password" placeholder="Enter password" style="padding: 10px;">
+    <button class="my-button" onclick="checkPassword()">Open Door</button>
+  </div>
+
+
+  <script>
+    // JavaScript Command
+    function checkPassword() {
+      var passwordInput = document.getElementById('password');
+      var password = passwordInput.value;
+
+      if (password === 'opensesame') {
+        var doorElement = document.querySelector('.door');
+        doorElement.classList.add('open-door');
+        alert('Welcome Home!');
+      } else {
+        alert('Incorrect password. Try again.');
+      }
+    }
+  </script>
+</body>
+</html>
